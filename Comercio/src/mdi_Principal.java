@@ -58,6 +58,7 @@ public static String BD = "jdbc:mysql://localhost/comercio";
         exitMenuItem = new javax.swing.JMenuItem();
         saveMenuItem1 = new javax.swing.JMenuItem();
         saveMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
         copyMenuItem = new javax.swing.JMenuItem();
@@ -110,6 +111,14 @@ public static String BD = "jdbc:mysql://localhost/comercio";
         saveMenuItem2.setMnemonic('s');
         saveMenuItem2.setText("Empleado");
         fileMenu.add(saveMenuItem2);
+
+        jMenuItem1.setText("Usuario");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem1);
 
         menuBar.add(fileMenu);
 
@@ -187,6 +196,15 @@ int_Proveedor ventanaprov = new int_Proveedor();
          ventanaprov.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
     }//GEN-LAST:event_openMenuItemActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        int_Usuario ventanausuario = new int_Usuario();
+      panel.add(ventanausuario);
+         Dimension desktopSize = panel.getSize();
+        Dimension FrameSize = ventanausuario.getSize();
+         ventanausuario.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -232,6 +250,7 @@ int_Proveedor ventanaprov = new int_Proveedor();
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JDesktopPane panel;
