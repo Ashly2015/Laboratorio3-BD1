@@ -17,7 +17,7 @@ public class mdi_Principal extends javax.swing.JFrame {
     
 public static String BD = "jdbc:mysql://localhost/comercio";
     public static String Usuario = "root";
-    public static String Contraseña = "Sebas1234";
+    public static String Contraseña = "Polo.2015";
     
     public static Connection getConeccion(){
         Connection cn = null;
@@ -52,6 +52,9 @@ public static String BD = "jdbc:mysql://localhost/comercio";
         panel = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
         saveAsMenuItem = new javax.swing.JMenuItem();
@@ -73,6 +76,20 @@ public static String BD = "jdbc:mysql://localhost/comercio";
         fileMenu.setMnemonic('f');
         fileMenu.setText("Archivo");
 
+        jMenuItem2.setText("Grupo empresa");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem2);
+
+        jMenu1.setText("Empresa");
+        fileMenu.add(jMenu1);
+
+        jMenu2.setText("Tienda");
+        fileMenu.add(jMenu2);
+
         openMenuItem.setMnemonic('o');
         openMenuItem.setText("Proveedor");
         openMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -84,6 +101,11 @@ public static String BD = "jdbc:mysql://localhost/comercio";
 
         saveMenuItem.setMnemonic('s');
         saveMenuItem.setText("Marca");
+        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(saveMenuItem);
 
         saveAsMenuItem.setMnemonic('a');
@@ -205,6 +227,18 @@ int_Proveedor ventanaprov = new int_Proveedor();
          ventanausuario.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveMenuItemActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+     intGrupoEmpresa ventanausuario = new intGrupoEmpresa();
+      panel.add(ventanausuario);
+         Dimension desktopSize = panel.getSize();
+        Dimension FrameSize = ventanausuario.getSize();
+         ventanausuario.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);   // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -250,7 +284,10 @@ int_Proveedor ventanaprov = new int_Proveedor();
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JDesktopPane panel;
