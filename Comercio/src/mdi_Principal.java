@@ -53,8 +53,11 @@ public static String BD = "jdbc:mysql://localhost/comercio";
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         openMenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
         saveAsMenuItem = new javax.swing.JMenuItem();
@@ -84,11 +87,45 @@ public static String BD = "jdbc:mysql://localhost/comercio";
         });
         fileMenu.add(jMenuItem2);
 
-        jMenu1.setText("Empresa");
-        fileMenu.add(jMenu1);
+        jMenuItem3.setText("Empresa");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem3);
 
-        jMenu2.setText("Tienda");
-        fileMenu.add(jMenu2);
+        jMenuItem4.setText("Tienda");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem4);
+
+        jMenuItem5.setText("Producto");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem5);
+
+        jMenuItem6.setText("Divison");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem6);
+
+        jMenuItem7.setText("Moneda");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem7);
 
         openMenuItem.setMnemonic('o');
         openMenuItem.setText("Proveedor");
@@ -239,6 +276,46 @@ int_Proveedor ventanaprov = new int_Proveedor();
          ventanausuario.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);   // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+      intEmpresa ventanausuario = new intEmpresa();
+      panel.add(ventanausuario);
+         Dimension desktopSize = panel.getSize();
+        Dimension FrameSize = ventanausuario.getSize();
+         ventanausuario.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);   // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+       intTienda ventanausuario = new intTienda();
+      panel.add(ventanausuario);
+         Dimension desktopSize = panel.getSize();
+        Dimension FrameSize = ventanausuario.getSize();
+         ventanausuario.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);  // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+      int_Producto ventanausuario = new int_Producto();
+      panel.add(ventanausuario);
+         Dimension desktopSize = panel.getSize();
+        Dimension FrameSize = ventanausuario.getSize();
+         ventanausuario.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);   // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+     intDivision ventanausuario = new intDivision();
+      panel.add(ventanausuario);
+         Dimension desktopSize = panel.getSize();
+        Dimension FrameSize = ventanausuario.getSize();
+         ventanausuario.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);    // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+     intMoneda ventanausuario = new intMoneda();
+      panel.add(ventanausuario);
+         Dimension desktopSize = panel.getSize();
+        Dimension FrameSize = ventanausuario.getSize();
+         ventanausuario.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);     // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -284,10 +361,13 @@ int_Proveedor ventanaprov = new int_Proveedor();
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JDesktopPane panel;

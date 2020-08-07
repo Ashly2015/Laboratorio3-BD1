@@ -3,7 +3,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;/*
+import javax.swing.JOptionPane;
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -13,12 +14,12 @@ import javax.swing.JOptionPane;/*
  *
  * @author ranbr
  */
-public class intEmpresa extends javax.swing.JInternalFrame {
+public class intTienda extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form intEmpresa
+     * Creates new form intTienda
      */
-    public intEmpresa() {
+    public intTienda() {
         initComponents();
     }
 
@@ -31,30 +32,45 @@ public class intEmpresa extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtGrupo = new javax.swing.JTextField();
+        txtBuscado = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtEmpresa = new javax.swing.JTextField();
+        btnLimpiar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
+        Nombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        txtBuscado = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        btnLimpiar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        Nombre = new javax.swing.JLabel();
-        txtTel = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("Mantenimiento Empresa");
+        setTitle("Mantenimiento Tienda");
         setVisible(true);
 
-        jLabel5.setText("Correo");
+        jLabel1.setText("ID");
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Telefono");
+
+        jLabel2.setText("Empresa");
+
+        jLabel4.setText("Direccion");
+
+        Nombre.setText("Nombre");
 
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -84,21 +100,6 @@ public class intEmpresa extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("ID");
-
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Grupo");
-
-        jLabel4.setText("Telefono");
-
-        Nombre.setText("Nombre");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,7 +116,7 @@ public class intEmpresa extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -143,10 +144,10 @@ public class intEmpresa extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(32, 32, 32)))))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +158,7 @@ public class intEmpresa extends javax.swing.JInternalFrame {
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -166,11 +167,11 @@ public class intEmpresa extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngresar)
@@ -188,18 +189,33 @@ public class intEmpresa extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        txtID.setText("");
+        txtID.setEnabled(true);
+        txtEmpresa.setText("");
+        txtNombre.setText("");
+        txtBuscado.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+
+        btnIngresar.setEnabled(true);
+        btnModificar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
         try {
             Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
             //localhost es 127.0.0.1
-            PreparedStatement pst = cn.prepareStatement("insert into empresa values(?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("insert into tienda values(?,?,?,?,?)");
 
             pst.setString(1, txtID.getText().trim());
-            pst.setString(2, txtGrupo.getText());
+            pst.setString(2, txtEmpresa.getText());
             pst.setString(3, txtNombre.getText());
-            pst.setString(4, txtTel.getText());
-            pst.setString(5, txtCorreo.getText());
+            pst.setString(4, txtDireccion.getText());
+            pst.setString(5, txtTelefono.getText());
 
             //bitacora_guardar();
 
@@ -207,10 +223,10 @@ public class intEmpresa extends javax.swing.JInternalFrame {
 
             JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             txtID.setText("");
-            txtGrupo.setText("");
+            txtEmpresa.setText("");
             txtNombre.setText("");
-            txtTel.setText("");
-            txtCorreo.setText("");
+            txtDireccion.setText("");
+            txtTelefono.setText("");
             txtBuscado.setText("");
 
         } catch (SQLException e) {
@@ -224,24 +240,24 @@ public class intEmpresa extends javax.swing.JInternalFrame {
             String ID = txtBuscado.getText().trim();
 
             Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("update empresa set id_grupo = ?, nombre = ?, telefono = ?, correo = ? where id_empresa =" + ID);
+            PreparedStatement pst = cn.prepareStatement("update tienda set id_empresa = ?, nombre = ?, direccion = ?, telefono = ? where id_tienda =" + ID);
 
-            pst.setString(1, txtGrupo.getText());
+            pst.setString(1, txtEmpresa.getText());
             pst.setString(2, txtNombre.getText());
-            pst.setString(3, txtTel.getText());
-            pst.setString(5, txtCorreo.getText());
+            pst.setString(3, txtDireccion.getText());
+            pst.setString(5, txtTelefono.getText());
 
             pst.executeUpdate();
 
             //bitacora_modificar();
             JOptionPane.showMessageDialog(this, "¡MODIFICACION EXITOSA!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-            txtGrupo.setText("");
+            txtEmpresa.setText("");
             txtNombre.setText("");
             txtID.setText("");
             txtID.setEnabled(true);
             txtBuscado.setText("");
-            txtTel.setText("");
-            txtCorreo.setText("");
+            txtDireccion.setText("");
+            txtTelefono.setText("");
 
             btnIngresar.setEnabled(true);
             btnModificar.setEnabled(false);
@@ -255,19 +271,19 @@ public class intEmpresa extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
             Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("delete from empresa where id_empresa = ?");
+            PreparedStatement pst = cn.prepareStatement("delete from tienda where id_tienda = ?");
 
             pst.setString(1, txtBuscado.getText().trim());
             pst.executeUpdate();
 
             //bitacora_eliminar();
             JOptionPane.showMessageDialog(this, "¡ELIMINACION EXITOSA!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-            txtGrupo.setText("");
+            txtEmpresa.setText("");
             txtID.setText("");
             txtID.setEnabled(true);
             txtNombre.setText("");
-            txtTel.setText("");
-            txtCorreo.setText("");
+            txtDireccion.setText("");
+            txtTelefono.setText("");
 
             btnIngresar.setEnabled(true);
             btnModificar.setEnabled(false);
@@ -282,18 +298,18 @@ public class intEmpresa extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try{
             Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("select * from empresa where id_empresa =?");
+            PreparedStatement pst = cn.prepareStatement("select * from tienda where id_tienda =?");
             pst.setString(1, txtBuscado.getText().trim());
 
             ResultSet rs = pst.executeQuery();
 
             if(rs.next()){
-                txtID.setText(rs.getString("id_empresa"));
+                txtID.setText(rs.getString("id_tienda"));
                 txtID.setEnabled(false);
-                txtGrupo.setText(rs.getString("id_grupo"));
+                txtEmpresa.setText(rs.getString("id_empresa"));
                 txtNombre.setText(rs.getString("nombre"));
-                txtTel.setText(rs.getString("telefono"));
-                txtCorreo.setText(rs.getString("correo"));
+                txtDireccion.setText(rs.getString("direccion"));
+                txtTelefono.setText(rs.getString("telefono"));
                 txtBuscado.setText("");
 
                 btnModificar.setEnabled(true);
@@ -301,7 +317,7 @@ public class intEmpresa extends javax.swing.JInternalFrame {
                 btnIngresar.setEnabled(false);
 
             } else {
-                JOptionPane.showMessageDialog(null, "empresa no registrada.");
+                JOptionPane.showMessageDialog(null, "tienda no registrada.");
             }
 
         }catch (Exception e){
@@ -309,21 +325,6 @@ public class intEmpresa extends javax.swing.JInternalFrame {
         }
         //bitacora_busqueda();
     }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
-        txtID.setText("");
-        txtID.setEnabled(true);
-        txtGrupo.setText("");
-        txtNombre.setText("");
-        txtBuscado.setText("");
-        txtTel.setText("");
-        txtCorreo.setText("");
-
-        btnIngresar.setEnabled(true);
-        btnModificar.setEnabled(true);
-        btnEliminar.setEnabled(true);
-    }//GEN-LAST:event_btnLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -338,10 +339,10 @@ public class intEmpresa extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtBuscado;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtGrupo;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtEmpresa;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTel;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
