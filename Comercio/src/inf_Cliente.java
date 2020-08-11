@@ -20,10 +20,7 @@ public class inf_Cliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form inf_Cliente
      */
-    public static String BD = "jdbc:mysql://localhost/comercio";
-    public static String Usuario = "root";
-    public static String Contraseña = "6182";
-
+   
     public inf_Cliente() {
         initComponents();
     }

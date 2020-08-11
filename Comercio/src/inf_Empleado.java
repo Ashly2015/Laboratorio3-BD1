@@ -20,10 +20,7 @@ public class inf_Empleado extends javax.swing.JInternalFrame {
     /**
      * Creates new form int_Empleado
      */
-    public static String BD = "jdbc:mysql://localhost/comercio";
-    public static String Usuario = "root";
-    public static String Contraseña = "6182";
-
+ 
     public inf_Empleado() {
         initComponents();
     }
