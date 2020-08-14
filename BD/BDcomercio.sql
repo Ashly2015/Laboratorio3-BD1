@@ -2,6 +2,106 @@ drop database comercio;
 create database comercio;
 use comercio;
 
+create table permiso(
+id_permiso varchar(128) primary key,
+nombre varchar(128) not null,
+consultar varchar(1) not null,
+insertar varchar(1) not null,
+eliminar varchar(1) not null,
+modificar varchar(1) not null,
+imprimir varchar(1) not null
+)engine=innodb;
+
+create table aplicacion(
+id_aplicacion varchar(128) primary key,
+nombre varchar(128) not null
+)engine=innodb;
+
+create table asig_permiso_aplicacion(
+id_permiso varchar(128) not null,
+id_aplicacion varchar(128) not null,
+foreign key (id_permiso) references
+permiso(id_permiso),
+foreign key (id_aplicacion) references
+aplicacion(id_aplicacion),
+primary key(id_permiso,id_aplicacion)
+)engine=innodb;
+
+create table modulo(
+id_modulo varchar(128) primary key,
+nombre varchar(128) not null,
+estatus varchar(1) not null
+)engine=innodb;
+
+create table asig_modulo_aplicacion(
+id_modulo varchar(128) not null,
+id_aplicacion varchar(128) not null,
+foreign key (id_modulo) references
+modulo(id_modulo),
+foreign key (id_aplicacion) references
+aplicacion(id_aplicacion),
+primary key(id_modulo,id_aplicacion)
+)engine=innodb;
+
+create table rol(
+id_rol varchar(128) primary key,
+nombre varchar(128) not null,
+estatus varchar(1) not null
+)engine=innodb;
+
+create table puesto(
+id_puesto varchar(128) primary key,
+nombre varchar(128) not null,
+estatus varchar(1) not null
+)engine=innodb;
+
+create table empleado(
+id_empleado varchar(128) primary key,
+id_puesto varchar(128) not null,
+nombre varchar(128) not null,
+telefono varchar(128) not null,
+direccion varchar(128) not null,
+email varchar (128) not null,
+estatus varchar(1) not null,
+foreign key(id_puesto) references
+puesto(id_puesto)
+)engine=Innodb;
+
+create table usuario(
+id_usuario varchar(128) primary key,
+id_empleado varchar(128) not null,
+id_rol varchar(128) not null,
+nombre_usuario varchar(128) not null,
+contraseña varchar(128) not null,
+foreign key (id_rol) references
+rol(id_rol),
+foreign key (id_empleado) references
+empleado(id_empleado)
+)engine=innodb;
+
+create table asig_usuario_aplicacion(
+id_usuario varchar(128) not null,
+id_aplicacion varchar(128) not null,
+foreign key (id_usuario) references
+usuario(id_usuario),
+foreign key (id_aplicacion) references
+aplicacion(id_aplicacion),
+primary key(id_usuario,id_aplicacion)
+)engine=innodb;
+
+create table asig_rol_aplicacion(
+id_rol varchar(128) not null,
+id_aplicacion varchar(128) not null,
+foreign key (id_rol) references
+rol(id_rol),
+foreign key (id_aplicacion) references
+aplicacion(id_aplicacion),
+primary key(id_rol,id_aplicacion)
+)engine=innodb;
+
+
+
+
 create table caja(
 id_caja varchar(128) primary key,
 estatus varchar(1) not null
@@ -39,7 +139,7 @@ fecha date not null,
 movimiento_cambio double not null,
 foreign key (id_moneda) references
 moneda(id_moneda),
-primary key(id_moneda,fecha)
+primary key(id_moneda)
 )engine=innodb;
 
 create table marca(
@@ -53,23 +153,7 @@ nombre varchar(128) not null,
 stock varchar(1) not null
 )engine=innodb;
 
-create table puesto(
-id_puesto varchar(128) primary key,
-nombre varchar(128) not null,
-estatus varchar(1) not null
-)engine=innodb;
 
-create table empleado(
-id_empleado varchar(128) primary key,
-id_puesto varchar(128) not null,
-nombre varchar(128) not null,
-telefono varchar(128) not null,
-direccion varchar(128) not null,
-email varchar (128) not null,
-estatus varchar(1) not null,
-foreign key(id_puesto) references
-puesto(id_puesto)
-)engine=Innodb;
 
 create table producto(
 id_producto varchar(128) primary key,
@@ -125,7 +209,8 @@ direccion varchar(128) not null
 )engine=Innodb;
 
 create table compra_encabezado(
-id_compraE varchar(128) primary key,
+id_compraE varchar(128) not null,
+id_empresa varchar(128) not null,
 nit_proveedor varchar(128) not null,
 id_moneda varchar(128) not null,
 total double not null,
@@ -133,7 +218,10 @@ fecha date not null,
 foreign key (id_moneda) references
 moneda_movimiento(id_moneda),
 foreign key (nit_proveedor) references
-proveedor(nit_proveedor)
+proveedor(nit_proveedor),
+foreign key (id_empresa) references
+empresa(id_empresa),
+primary key(id_compraE)
 )engine=Innodb;
 
 
@@ -177,6 +265,7 @@ division(id_division)
 
 create table venta_encabezado (
 id_ventaE varchar(128) ,
+id_empresa varchar(128),
 id_tienda varchar(128) ,
 nit_cliente varchar(128) not null,
 id_empleado varchar(128) ,
@@ -187,6 +276,8 @@ fecha date not null,
 total double not null,
 foreign key (id_empleado) references
 empleado(id_empleado),
+foreign key (id_empresa) references
+empresa(id_empresa),
 foreign key (id_moneda) references
 moneda_movimiento(id_moneda),
 foreign key (id_serie) references
@@ -195,7 +286,7 @@ foreign key (nit_cliente) references
 cliente(nit_cliente),
 foreign key (id_tienda) references
 tienda(id_tienda),
-primary key(id_ventaE,id_tienda,nit_cliente,id_empleado,id_serie,id_moneda)
+primary key(id_ventaE,id_empresa,id_tienda,nit_cliente,id_empleado,id_serie,id_moneda)
 )engine=Innodb;
 
 create table venta_detalle(
@@ -220,21 +311,50 @@ venta_encabezado(id_ventaE),
 primary key(id_ventaE,id_empleado,id_tienda,id_serie,id_producto)
 )engine=Innodb;
 
-create table rol(
-id_rol varchar(128) primary key,
-nombre varchar(128) not null,
-estatus varchar(1) not null
+create table credito_proveedor(
+id_credito_proveedor varchar(128)  not null,
+nit_proveedor varchar(128) not null,
+id_empresa varchar(128) not null,
+porcentaje double,
+interes double,
+cuota double not null,
+pago_acumulado double not null,
+tiempo_pago int not null,
+tipo_tiempo varchar(128) not null,
+forma_pago varchar(128) not null,
+total double not null,
+fecha_inicio date not null,
+fecha_final date not null,
+foreign key (nit_proveedor) references
+proveedor(nit_proveedor),
+foreign key (id_empresa) references
+empresa(id_empresa),
+primary key(id_credito_proveedor,nit_proveedor,id_empresa)
 )engine=innodb;
 
-create table usuario(
-id_usuario varchar(128) primary key,
-id_empleado varchar(128) not null,
-id_rol varchar(128) not null,
-nombre_usuario varchar(128) not null,
-contraseña varchar(128) not null,
-foreign key (id_rol) references
-rol(id_rol),
-foreign key (id_empleado) references
-empleado(id_empleado)
+
+create table credito_cliente(
+id_credito_cliente varchar(128)  not null,
+nit_cliente varchar(128) not null,
+id_empresa varchar(128) not null,
+porcentaje double,
+interes double,
+cuota double not null,
+pago_acumulado double not null,
+tiempo_pago int not null,
+tipo_tiempo varchar(128) not null,
+forma_pago varchar(128) not null,
+total double not null,
+fecha_inicio date not null,
+fecha_final date not null,
+foreign key (nit_cliente) references
+cliente(nit_cliente),
+foreign key (id_empresa) references
+empresa(id_empresa),
+primary key(id_credito_cliente,nit_cliente,id_empresa)
 )engine=innodb;
+
+
+
+
 
