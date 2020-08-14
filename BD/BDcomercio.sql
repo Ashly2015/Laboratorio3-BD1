@@ -354,7 +354,12 @@ empresa(id_empresa),
 primary key(id_credito_cliente,nit_cliente,id_empresa)
 )engine=innodb;
 
-
-
-
-
+create table bitacora_(
+id_registro varchar(128) primary key not null,
+id_usuario varchar(128),
+id_rol varchar(128),
+id_empresa varchar(128),
+descripcion varchar(128) not null,
+fecha date not null,
+hora time not null
+)engine=innodb;
