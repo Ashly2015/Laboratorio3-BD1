@@ -363,3 +363,4 @@ descripcion varchar(128) not null,
 fecha date not null,
 hora time not null
 )engine=innodb;
+
