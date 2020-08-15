@@ -16,7 +16,11 @@ public class mdi_Principal extends javax.swing.JFrame {
 
     public static String BD = "jdbc:mysql://localhost/comercio";
     public static String Usuario = "root";
+<<<<<<< HEAD
     public static String Contraseña = "Polo.2015";
+=======
+    public static String Contraseña = "Sebas1234";
+>>>>>>> c3b1610468459d3c2cfeb9f8cf3ef7c630715758
 
     public static Connection getConeccion() {
         Connection cn = null;
@@ -69,6 +73,11 @@ public class mdi_Principal extends javax.swing.JFrame {
         saveMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+<<<<<<< HEAD
+=======
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
+>>>>>>> c3b1610468459d3c2cfeb9f8cf3ef7c630715758
         editMenu = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
         copyMenuItem = new javax.swing.JMenuItem();
@@ -202,6 +211,18 @@ public class mdi_Principal extends javax.swing.JFrame {
         fileMenu.add(jMenuItem8);
 
         menuBar.add(fileMenu);
+
+        jMenu1.setText("Transacciones");
+
+        jMenuItem9.setText("Compra");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem9);
+
+        menuBar.add(jMenu1);
 
         editMenu.setMnemonic('e');
         editMenu.setText("Edit");
@@ -370,6 +391,18 @@ public class mdi_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_saveMenuItem2ActionPerformed
 
+<<<<<<< HEAD
+=======
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        intCompra ventana = new intCompra();
+        panel.add(ventana);
+        Dimension desktopSize = panel.getSize();
+        Dimension FrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+>>>>>>> c3b1610468459d3c2cfeb9f8cf3ef7c630715758
     /**
      * @param args the command line arguments
      */
@@ -415,6 +448,7 @@ public class mdi_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
@@ -423,6 +457,10 @@ public class mdi_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+<<<<<<< HEAD
+=======
+    private javax.swing.JMenuItem jMenuItem9;
+>>>>>>> c3b1610468459d3c2cfeb9f8cf3ef7c630715758
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JDesktopPane panel;
