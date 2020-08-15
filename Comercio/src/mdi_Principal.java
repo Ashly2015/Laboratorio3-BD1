@@ -16,11 +16,8 @@ public class mdi_Principal extends javax.swing.JFrame {
 
     public static String BD = "jdbc:mysql://localhost/comercio";
     public static String Usuario = "root";
-<<<<<<< HEAD
-    public static String Contraseña = "Polo.2015";
-=======
     public static String Contraseña = "Sebas1234";
->>>>>>> c3b1610468459d3c2cfeb9f8cf3ef7c630715758
+
 
     public static Connection getConeccion() {
         Connection cn = null;
@@ -391,8 +388,8 @@ public class mdi_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_saveMenuItem2ActionPerformed
 
-<<<<<<< HEAD
-=======
+
+
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
         intCompra ventana = new intCompra();
@@ -402,7 +399,7 @@ public class mdi_Principal extends javax.swing.JFrame {
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
->>>>>>> c3b1610468459d3c2cfeb9f8cf3ef7c630715758
+
     /**
      * @param args the command line arguments
      */
