@@ -1,4 +1,4 @@
-drop database comercio;
+-- drop database comercio;
 create database comercio;
 use comercio;
 
@@ -208,15 +208,16 @@ nombre_proveedor varchar(128) not null,
 direccion varchar(128) not null
 )engine=Innodb;
 
+
 create table compra_encabezado(
 id_compraE varchar(128) not null,
 id_empresa varchar(128) not null,
 nit_proveedor varchar(128) not null,
 id_moneda varchar(128) not null,
-total double not null,
+total double,
 fecha date not null,
 foreign key (id_moneda) references
-moneda_movimiento(id_moneda),
+moneda(id_moneda),
 foreign key (nit_proveedor) references
 proveedor(nit_proveedor),
 foreign key (id_empresa) references
@@ -224,9 +225,11 @@ empresa(id_empresa),
 primary key(id_compraE)
 )engine=Innodb;
 
-
+-- use comercio;
+-- drop table compra_detalle;
 create table compra_detalle(
 id_producto varchar(128) primary key not null,
+cantidad int not null,
 id_compraE varchar(128) not null,
 foreign key (id_producto) references
 producto(id_producto),
