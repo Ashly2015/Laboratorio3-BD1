@@ -18,6 +18,7 @@ public class mdi_Principal extends javax.swing.JFrame {
     public static String Usuario = "root";
     public static String Contraseña = "Sebas1234";
 
+
     public static Connection getConeccion() {
         Connection cn = null;
         try {
@@ -69,8 +70,11 @@ public class mdi_Principal extends javax.swing.JFrame {
         saveMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+<<<<<<< HEAD
+=======
         jMenu1 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
+>>>>>>> c3b1610468459d3c2cfeb9f8cf3ef7c630715758
         editMenu = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
         copyMenuItem = new javax.swing.JMenuItem();
@@ -384,6 +388,8 @@ public class mdi_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_saveMenuItem2ActionPerformed
 
+
+
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
         intCompra ventana = new intCompra();
@@ -392,6 +398,7 @@ public class mdi_Principal extends javax.swing.JFrame {
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -447,7 +454,10 @@ public class mdi_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+<<<<<<< HEAD
+=======
     private javax.swing.JMenuItem jMenuItem9;
+>>>>>>> c3b1610468459d3c2cfeb9f8cf3ef7c630715758
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JDesktopPane panel;
