@@ -2,6 +2,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -19,11 +20,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class intCompra extends javax.swing.JInternalFrame {
 
+    DefaultTableModel model = new DefaultTableModel();
+    String subtotal;
+    
+   
     /**
      * Creates new form intCompra
      */
     public intCompra() {
         initComponents();
+        txt_precio.setEnabled(false);
     }
 
     /**
@@ -46,7 +52,7 @@ public class intCompra extends javax.swing.JInternalFrame {
         btnAgregarProducto = new javax.swing.JButton();
         btnFinCompra = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
         btn_confirmar = new javax.swing.JButton();
         panel1 = new java.awt.Panel();
         jLabel2 = new javax.swing.JLabel();
@@ -68,7 +74,19 @@ public class intCompra extends javax.swing.JInternalFrame {
 
         jLabel5.setText("ID_PRODUCTO");
 
+        txt_idProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_idProductoKeyReleased(evt);
+            }
+        });
+
         jLabel7.setText("CANTIDAD");
+
+        txt_cantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_cantidadKeyReleased(evt);
+            }
+        });
 
         jLabel8.setText("TOTAL");
 
@@ -88,7 +106,7 @@ public class intCompra extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -99,7 +117,7 @@ public class intCompra extends javax.swing.JInternalFrame {
                 "IdCompra", "IdProducto", "Cantidad", "SubTotal"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla);
 
         btn_confirmar.setText("Confirmar");
         btn_confirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -254,7 +272,7 @@ public class intCompra extends javax.swing.JInternalFrame {
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = new DefaultTableModel();
+        
         
         try {
             Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
@@ -270,13 +288,25 @@ public class intCompra extends javax.swing.JInternalFrame {
             pst1.executeUpdate();           
        
             //Llenando la tabla
-            model.addRow(new Object[]{txt_IdCompra.getText(), txt_idProducto.getText(), txt_cantidad.getText(), txt_precio.getText()});
+            
+             this.tabla.setModel(model); 
+            String titulo[] = {"Id_Compra", "Id_Producto", "Cantidad", "Precio"};
+            model.setColumnIdentifiers(titulo);
+            
+            String registros[] = new String[4];
+            
+            registros[0] = txt_IdCompra.getText();
+            registros[1] = txt_idProducto.getText();
+            registros[2] = txt_cantidad.getText();
+            registros[3] = txt_precio.getText();
+            model.addRow(registros);
 
             JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             txt_idProducto.setText("");
             txt_cantidad.setText("");
             txt_precio.setText("");
 
+            sumaColumnaPrecio();
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error en registro", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -287,34 +317,37 @@ public class intCompra extends javax.swing.JInternalFrame {
     private void btnFinCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinCompraActionPerformed
         // TODO add your handling code here:
         try{
-                        
+            String id = txt_IdCompra.getText();
             //Guardando en el encabezado de la compra
             Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("insert into compra_encabezado values(?,?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("update compra_encabezado set id_compraE = ?, id_empresa = ?, nit_proveedor = ?, id_moneda = ?, total = ? where id_compraE = " + id);
 
             pst.setString(1, txt_IdCompra.getText().trim());
             pst.setString(2, txt_idEmpresa.getText());
             pst.setString(3, txt_nitProveedor.getText());
             pst.setString(4, txt_idMoneda.getText());
             pst.setString(5, txt_total.getText());
-            pst.setString(6, txt_fecha.getCalendar().toString());
+            //pst.setString(6, txt_fecha.getCalendar().toString());
 
             pst.executeUpdate();
             
-             JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+             JOptionPane.showMessageDialog(this, "¡COMPRA FINALIZADA CON ÉXITO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             txt_nitProveedor.setText("");
             txt_idProducto.setText("");
             txt_cantidad.setText("");
             txt_IdCompra.setText("");
             txt_idEmpresa.setText("");
             txt_idMoneda.setText("");
-           // txt_fecha.setDate();
+            txt_fecha.setCalendar(null);
             //txt_FechaVenta.setDate("");
             txt_total.setText("");
             txt_cantidad.setText("");
             txt_precio.setText("");
+            
+            model.setRowCount(0);
+                
         }catch(Exception e){
-     JOptionPane.showMessageDialog(this, "Error en registro", "Warning", JOptionPane.WARNING_MESSAGE);
+     JOptionPane.showMessageDialog(this, "Ya existe ése registro", "Warning", JOptionPane.WARNING_MESSAGE);
         System.out.println(e);}
     }//GEN-LAST:event_btnFinCompraActionPerformed
 
@@ -344,6 +377,8 @@ public class intCompra extends javax.swing.JInternalFrame {
              JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 
              panel1.setEnabled(false);
+             btn_confirmar.setEnabled(false);
+             
         } catch(Exception e){
             JOptionPane.showMessageDialog(this, "Error en registro", "Warning", JOptionPane.WARNING_MESSAGE);
             System.out.println(e);
@@ -351,6 +386,56 @@ public class intCompra extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btn_confirmarActionPerformed
 
+    private void txt_idProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_idProductoKeyReleased
+        // TODO add your handling code here:
+          String id = txt_idProducto.getText();
+        try{
+        Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
+        PreparedStatement  pst = cn.prepareStatement("select precio from producto where id_producto = ?");
+        pst.setString(1, id);
+        
+        ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                subtotal= rs.getString("precio");
+            }
+            else{
+                 JOptionPane.showMessageDialog(this, "No se encontro el prodcuto.", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        
+        }
+        catch (Exception e){
+            System.out.println(e);
+              JOptionPane.showMessageDialog(this, "Error en busqueda", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txt_idProductoKeyReleased
+
+    private void txt_cantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cantidadKeyReleased
+        // TODO add your handling code here:
+                  String id = txt_idProducto.getText();
+        try{
+            int intPrecio, intCant, intSubtotal;
+            intCant = Integer.parseInt(txt_cantidad.getText());
+            intSubtotal = Integer.parseInt(subtotal);
+            intPrecio = intSubtotal * intCant;
+            
+            txt_precio.setText(intPrecio + "");
+        }
+        catch (Exception e){
+            System.out.println(e);
+              JOptionPane.showMessageDialog(this, "Error en operacion", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txt_cantidadKeyReleased
+
+   public void sumaColumnaPrecio(){
+        double total = 0;
+        double fila =0;
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            fila = Double.parseDouble(tabla.getValueAt(i,3).toString());
+            total += fila;
+        }
+    
+        txt_total.setText(total + "");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProducto;
@@ -366,8 +451,8 @@ public class intCompra extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private java.awt.Panel panel1;
+    private javax.swing.JTable tabla;
     private javax.swing.JTextField txt_IdCompra;
     private javax.swing.JTextField txt_cantidad;
     private com.toedter.calendar.JDateChooser txt_fecha;
