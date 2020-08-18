@@ -1,4 +1,4 @@
-drop database comercio;
+-- drop database comercio;
 create database comercio;
 use comercio;
 
@@ -208,15 +208,16 @@ nombre_proveedor varchar(128) not null,
 direccion varchar(128) not null
 )engine=Innodb;
 
+
 create table compra_encabezado(
 id_compraE varchar(128) not null,
 id_empresa varchar(128) not null,
 nit_proveedor varchar(128) not null,
 id_moneda varchar(128) not null,
-total double ,
+total double,
 fecha date not null,
 foreign key (id_moneda) references
-moneda_movimiento(id_moneda),
+moneda(id_moneda),
 foreign key (nit_proveedor) references
 proveedor(nit_proveedor),
 foreign key (id_empresa) references
@@ -224,6 +225,8 @@ empresa(id_empresa),
 primary key(id_compraE)
 )engine=Innodb;
 
+-- use comercio;
+-- drop table compra_detalle;
 create table compra_detalle(
 id_producto varchar(128) primary key not null,
 cantidad int not null,
@@ -290,11 +293,11 @@ primary key(id_ventaE,id_empresa,id_tienda,nit_cliente,id_empleado,id_serie,id_m
 )engine=Innodb;
 
 create table venta_detalle(
-id_ventaE varchar(80) ,
-id_empleado varchar(80) ,
-id_tienda varchar(80) ,
-id_serie varchar(80) ,
-id_producto varchar(80) ,
+id_ventaE varchar(128) ,
+id_empleado varchar(128) ,
+id_tienda varchar(128) ,
+id_serie varchar(128) ,
+id_producto varchar(128) ,
 cantidad int not null,
 costo double not null,
 precio double not null,
@@ -312,16 +315,16 @@ primary key(id_ventaE,id_empleado,id_tienda,id_serie,id_producto)
 )engine=Innodb;
 
 create table credito_proveedor(
-id_credito_proveedor varchar(80)  not null,
-nit_proveedor varchar(80) not null,
-id_empresa varchar(80) not null,
+id_credito_proveedor varchar(128)  not null,
+nit_proveedor varchar(128) not null,
+id_empresa varchar(128) not null,
 porcentaje double,
 interes double,
 cuota double not null,
 pago_acumulado double not null,
 tiempo_pago int not null,
-tipo_tiempo varchar(80) not null,
-forma_pago varchar(80) not null,
+tipo_tiempo varchar(128) not null,
+forma_pago varchar(128) not null,
 total double not null,
 fecha_inicio date not null,
 fecha_final date not null,
@@ -334,16 +337,16 @@ primary key(id_credito_proveedor,nit_proveedor,id_empresa)
 
 
 create table credito_cliente(
-id_credito_cliente varchar(80)  not null,
-nit_cliente varchar(80) not null,
-id_empresa varchar(80) not null,
+id_credito_cliente varchar(128)  not null,
+nit_cliente varchar(128) not null,
+id_empresa varchar(128) not null,
 porcentaje double,
 interes double,
 cuota double not null,
 pago_acumulado double not null,
 tiempo_pago int not null,
-tipo_tiempo varchar(80) not null,
-forma_pago varchar(80) not null,
+tipo_tiempo varchar(128) not null,
+forma_pago varchar(128) not null,
 total double not null,
 fecha_inicio date not null,
 fecha_final date not null,
@@ -355,10 +358,10 @@ primary key(id_credito_cliente,nit_cliente,id_empresa)
 )engine=innodb;
 
 create table bitacora_(
-id_registro varchar(80) primary key not null,
-id_usuario varchar(80),
-id_rol varchar(80),
-id_empresa varchar(80),
+id_registro varchar(128) primary key not null,
+id_usuario varchar(128),
+id_rol varchar(128),
+id_empresa varchar(128),
 descripcion varchar(128) not null,
 fecha date not null,
 hora time not null
